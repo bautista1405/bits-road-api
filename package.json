@@ -1,0 +1,27 @@
+{
+  "name": "bits-road",
+  "version": "1.0.0",
+  "description": "Sell your digital content, online.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/index.js",
+    "start-dev": "nodemon node ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bautista1405"
+  },
+  "keywords": [
+    "Javascript",
+    "Node",
+    "Express",
+    "React"
+  ],
+  "author": "Bautista Aramendia Pradal",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
