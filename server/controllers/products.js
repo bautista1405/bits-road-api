@@ -26,6 +26,11 @@ const all = (req, res) => {
 }
 
 const create = (req, res) => {
+    const {
+        title,
+        price,
+        description
+    } = req.body
     console.log(req.body);
     res.send();
 }
