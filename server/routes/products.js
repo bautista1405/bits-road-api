@@ -1,17 +1,11 @@
 const {Router} = require('express');
 const router = Router();
+const {all, create} = require('../controllers/products')
 
 // acá manejamos las rutas del proyecto (GET, POST, PUT, PATCH, DELETE)
 
-router.get('/', (req, res) => {
-    res.json(
-        {name: "bautista", nickname: "iceman"}
-    );
-})
+router.get('/', all)
 
-router.post('/', (req, res) => {
-    console.log(req.body);
-    res.send();
-})
+router.post('/', create)
 
 module.exports = router;
