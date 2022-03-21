@@ -32,7 +32,7 @@ const create = (req, res) => {
         description
     } = req.body
     console.log(req.body);
-    res.send();
+    res.status(200).json({ message: 'Product created successfully'});
 }
 
 module.exports = { all, create } 
