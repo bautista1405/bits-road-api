@@ -35,4 +35,10 @@ const create = (req, res) => {
     res.status(200).json({ message: 'Product created successfully'});
 }
 
-module.exports = { all, create } 
+const find = (req, res) => {
+    const { id } = req.params;
+    const product = products.find((product) => product.id == id );
+    res.json(product);
+}
+
+module.exports = { all, create, find } 
