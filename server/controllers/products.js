@@ -1,25 +1,8 @@
-const products = [
-    {
-        id: '1',
-        title: 'Apuntes Javascript',
-        price: 200,
-        description: 'Los mejores apuntes de Javascript'
-    },
-    {
-        id: '2',
-        title: 'Apuntes Python',
-        price: 170,
-        description: 'Los mejores apuntes de Python'
-    },
-    {
-        id: '3',
-        title: 'Apuntes PHP',
-        price: 150,
-        description: 'Los mejores apuntes de PHP'
-    }
-]
+const { getAll } = require('../models/products')
 
 const all = (req, res) => {
+    const products = getAll();
+
     res.json(
         {products}
     );
@@ -37,7 +20,8 @@ const create = (req, res) => {
 
 const find = (req, res) => {
     const { id } = req.params;
-    const product = products.find((product) => product.id == id );
+    const products = getAll();
+    const product = products.find((product) => product.id === id );
     res.json(product);
 }
 
