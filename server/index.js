@@ -1,9 +1,12 @@
 const express = require('express');
 const port = 3000;
 
+const dotenv = require('dotenv');
 const compression = require('compression');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+
+dotenv.config();
 
 const products = require('./routes/products')
 
