@@ -20,11 +20,14 @@ const create = (req, res) => {
     res.status(200).json({ message: 'Product created successfully'});
 }
 
-const find = (req, res) => {
-    const { id } = req.params;
-    const products = getAll();
-    const product = products.find((product) => product.id === id );
-    res.json(product);
+const find = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const data = await product.findById(id);
+        res.json(data);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 module.exports = { all, create, find } 
