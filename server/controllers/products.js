@@ -1,11 +1,13 @@
-const { getAll } = require('../models/product')
+const product = require('../models/product')
 
-const all = (req, res) => {
-    const products = getAll();
-
-    res.json(
-        {products}
-    );
+const all = async (_, res) => {
+   try {
+        const data = await product.find();
+        res.json(data);
+   } catch (e) {
+       console.error(e);
+       res.sendStatus(500);
+   }
 }
 
 const create = (req, res) => {
