@@ -7,7 +7,7 @@ const signOptions = { expiresIn: '8h', algorithm: 'RS256' };
 const createToken = (payload) => jwt.sign(payload, privateKey, signOptions); //creamos el token
 
 const decodeToken = (token) => { //decodificamos el token
-  const [, JWT] = token.split(" ");
+  const [, JWT] = token.split(' ');
   const validToken = jwt.verify(JWT, publicKey);
   return validToken;
 };

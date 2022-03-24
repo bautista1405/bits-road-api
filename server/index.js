@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const { dbConnection } = require('./database/config')
+const { securedUser } = require('./middlewares/auth')
 dbConnection();
 
 const compression = require('compression');
@@ -24,7 +25,7 @@ app.use(bodyParser.json());
 
 app.use('/products', products);
 app.use('/auth', auth);
-app.use('/purchases', purchases);
+app.use('/purchases', securedUser, purchases);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
