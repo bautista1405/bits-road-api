@@ -1,7 +1,12 @@
 const { sendMail } = require('../services/mailing')
+const { contactTemplate } = require('../utils/contactTemplate')
+
 const contactEmail = async (req, res) => {
     try {
-        await sendMail();
+        const { name, lastname, comment, email } = req.body;
+        const html = contactTemplate(name, lastname, comment, email);
+        await sendMail({ html });
+        res.json({ message: "Email enviado" });
     } catch (e) {
         console.error(e);
         res.sendStatus(500);
