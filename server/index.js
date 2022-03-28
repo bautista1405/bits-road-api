@@ -16,6 +16,7 @@ const bodyParser = require('body-parser');
 const products = require('./routes/products');
 const auth = require('./routes/auth');
 const purchases = require('./routes/purchases');
+const contact = require('./routes/contact');
 
 const app = express();
 
@@ -23,9 +24,10 @@ app.use(compression());
 app.use(logger("dev"));
 app.use(bodyParser.json());
 
-app.use('/products', products);
-app.use('/auth', auth);
-app.use('/purchases', securedUser, purchases);
+app.use('/api/products', products);
+app.use('/api/auth', auth);
+app.use('/api/purchases', securedUser, purchases);
+app.use('/api/contact', contact);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
