@@ -18,15 +18,11 @@ const PurchaseSchema = Schema({
     type: Boolean,
     default: true,
   },
-  ts_create: {
-    type: Date,
-    default: Date.now,
-  },
   users: {                           //esto nos sirve para crear una referencia dentro de una colección, a otra colección
       type: Schema.Types.ObjectId,  //la compra es asignada al usuario que la hizo
       ref: 'User',
       required: true
   }
-});
+},{timestamps: true},);
 
 module.exports = model("purchases", PurchaseSchema);

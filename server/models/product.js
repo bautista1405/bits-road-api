@@ -22,14 +22,10 @@ const ProductSchema = Schema({
     type: Boolean,
     default: true,
   },
-  ts_create: {
-    type: Date,
-    default: Date.now,
-  },
   available_quantity: {
     type: Number,
     required: true,
   },
-});
+},{timestamps: true},);
 
 module.exports = model("products", ProductSchema);
