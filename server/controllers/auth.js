@@ -1,4 +1,5 @@
-const uid = require("uuid");
+const uid = require('uuid');
+const moment = require('moment');
 const User = require('../models/user')
 const { hash, unhash } = require('../utils/bcrypt')
 const { createToken } = require('../services/auth')
@@ -40,6 +41,7 @@ const create = async (req, res) => {
         user.password = hash(password);
         const verificationCode = uid();
         user.verificationCode = verificationCode;
+        user.dateExpirationCode = moment(new Date()).add(2, 'hours')
         await user.save();
         sendMail({
             to: email,
