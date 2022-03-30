@@ -11,11 +11,7 @@ const all = async (_, res) => {
 }
 
 const create = (req, res) => {
-    const {
-        title,
-        price,
-        description
-    } = req.body
+    const { title, price, description} = req.body
     console.log(req.body);
     res.status(200).json({ message: 'Product created successfully'});
 }
@@ -30,4 +26,19 @@ const find = async (req, res) => {
     }
 }
 
-module.exports = { all, create, find } 
+const approvePurchaseProducts = async (products) => {
+    const productsArray = products.map(({ id, price, quantity }) =>
+      product.find({
+        _id: id,
+        price: price,
+        stock: { $gte: quantity },
+        enable: true,
+      })
+    );
+  
+    const [approvePurchaseResult] = await Promise.all(productsArray); // []
+    if (approvePurchaseResult.length) return true; // [[]]
+    return false;
+};
+
+module.exports = { all, create, find, approvePurchaseProducts } 

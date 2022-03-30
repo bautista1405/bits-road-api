@@ -18,6 +18,10 @@ const PurchaseSchema = Schema({
     type: Boolean,
     default: true,
   },
+  shippingEmailAddress: {
+    type: String,
+    required: true,
+  },
   users: {                           //esto nos sirve para crear una referencia dentro de una colección, a otra colección
       type: Schema.Types.ObjectId,  //la compra es asignada al usuario que la hizo
       ref: 'User',
