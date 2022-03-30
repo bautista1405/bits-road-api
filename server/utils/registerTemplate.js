@@ -4,7 +4,9 @@ const registerTemplate = ({ name, lastname, verificationCode }) =>
         <head></head>
         <body>
             <h3>¡Hola ${name}, ${lastname}. Gracias por registrarte!</h3>
-            <a href=${process.env.DEV_URL}/auth/verificationCode/${verificationCode}>Click acá para confirmar la cuenta </a>
+            <a href="http://localhost:3000/api/auth/authorization/${verificationCode}">Click acá para confirmar la cuenta </a>
         </body>
         </html>
     `;
+
+module.exports = { registerTemplate }

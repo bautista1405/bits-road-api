@@ -1,9 +1,10 @@
-const uid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const moment = require('moment');
-const User = require('../models/user')
-const { hash, unhash } = require('../utils/bcrypt')
-const { createToken } = require('../services/auth')
-const { sendMail } = require('../services/mailing')
+const User = require('../models/user');
+const { hash, unhash } = require('../utils/bcrypt');
+const { createToken } = require('../services/auth');
+const { sendMail } = require('../services/mailing');
+const { registerTemplate } = require('../utils/registerTemplate')
 
 const auth = async (req, res) => {
     try {
@@ -30,6 +31,18 @@ const auth = async (req, res) => {
     }
 }
 
+const validateAuth = async (req, res) => {
+    try {
+      const { verificationCode } = req.params;
+      await User.findOneAndUpdate({ verificationCode }, { enable: true });
+      res.redirect('http://localhost:3000/api/auth/login');
+    } catch (e) {
+      res.redirect(
+        'http://localhost:3000/api/auth/login?error=INVALID_VALIDATION_EMAIL'
+      );
+    }
+};
+
 const create = async (req, res) => {
     try {
         const { email, password, name, lastname } = req.body;
@@ -39,7 +52,7 @@ const create = async (req, res) => {
         if(user) return res.status(400).json({ message: 'El mail ya está en uso' })
         user = new User(req.body);
         user.password = hash(password);
-        const verificationCode = uid();
+        const verificationCode = uuidv4();
         user.verificationCode = verificationCode;
         user.dateExpirationCode = moment(new Date()).add(2, 'hours')
         await user.save();
@@ -55,4 +68,4 @@ const create = async (req, res) => {
     }
 }
 
-module.exports = { create, auth }
+module.exports = { create, auth, validateAuth}

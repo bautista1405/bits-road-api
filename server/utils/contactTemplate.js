@@ -5,7 +5,7 @@ const contactTemplate = ({ name, lastname, comment, email }) => `
             <h4>Se contacto con vos: ${name} ${lastname}</h4>
             <p>Su pregunta: </p>
             <p>${comment} </p>
-            <p>Contacto : ${email}</p>
+            <p>Contacto: ${email}</p>
         </body>
         </html>
       
