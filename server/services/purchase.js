@@ -5,7 +5,7 @@ const {
 } = require("../controllers/products");
 const { getTotalPrice } = require("../utils/purchase");
 const { v4: uuidv4 } = require('uuid'); // operation id
-
+const { createPurchaseTicket } = require("../utils/pdfGenerator");
 
 const newPurchase = async (req) => {
   try {
@@ -22,7 +22,8 @@ const newPurchase = async (req) => {
     await purchase.save();
     await updateStock(products);
     // transaction end
-    
+    createPurchaseTicket(idOperation, products, total);
+    return "PURCHASE_OK";
   } catch (e) {
     return "PROBLEMS_WITH_PROCCESSING_PURCHASE";
   }
