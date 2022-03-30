@@ -15,12 +15,12 @@ const newPurchase = async (req) => {
     purchase.users = req.id;
     purchase.idOperation = idOperation;
     // transaction
-    const validPurchase = await approvePurchaseProducts(products); // <Promise>
-    if (!validPurchase) return "INVALID_PURCHASE";
+    // const validPurchase = await approvePurchaseProducts(products); // <Promise>
+    // if (!validPurchase) return "INVALID_PURCHASE";
     const total = getTotalPrice(products);
     purchase.total = total;
     await purchase.save();
-    await updateStock(products);
+    //await updateStock(products);
     // transaction end
     createPurchaseTicket(idOperation, products, total);
     return "PURCHASE_OK";

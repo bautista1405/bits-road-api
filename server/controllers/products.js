@@ -16,7 +16,7 @@ const create = (req, res) => {
     res.status(200).json({ message: 'Product created successfully'});
 }
 
-const find = async (req, res) => {
+const single = async (req, res) => {
     try {
         const { id } = req.params;
         const data = await product.findById(id);
@@ -60,4 +60,4 @@ const updateStock = async (products) => {
     }
 };
 
-module.exports = { all, create, find, approvePurchaseProducts, updateStock } 
+module.exports = { all, create, single, approvePurchaseProducts, updateStock } 

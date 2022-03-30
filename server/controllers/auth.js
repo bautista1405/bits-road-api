@@ -27,7 +27,8 @@ const auth = async (req, res) => {
         res.end();
 
     } catch (e) {
-
+        console.error(e);
+        //verificar si existe el usuario, si no existe retornar un 401
     }
 }
 

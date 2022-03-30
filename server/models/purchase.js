@@ -6,26 +6,22 @@ const { Schema, model } = require("mongoose");
 //enable: para manejar los datos de forma lógica, ya no se eliminan datos, sino que son dados de baja
 
 const PurchaseSchema = Schema({
-  products: {
-    type: Array,
-    required: true,
-  },
   total: {
     type: Number,
     required: true,
   },
-  enable: {
-    type: Boolean,
-    default: true,
-  },
-  shippingEmailAddress: {
-    type: String,
+  products: {
+    type: Array,
     required: true,
   },
   users: {                           //esto nos sirve para crear una referencia dentro de una colección, a otra colección
       type: Schema.Types.ObjectId,  //la compra es asignada al usuario que la hizo
       ref: 'User',
       required: true
+  },
+  enable: {
+    type: Boolean,
+    default: true,
   },
   idOperation: {
     type: String,
