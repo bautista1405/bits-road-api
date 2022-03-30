@@ -41,4 +41,23 @@ const approvePurchaseProducts = async (products) => {
     return false;
 };
 
-module.exports = { all, create, find, approvePurchaseProducts } 
+const updateStock = async (products) => {
+    console.log(products);
+    try {
+      const resultantStock = products.map(({ id, quantity }) => {
+        product.updateOne(
+          { _id: id },
+          {
+            $inc: { stock: - quantity },  //increment operator
+          }
+        );
+      });
+      const [updatedStock] = await Promise.all(resultantStock);
+      console.log(updatedStock);
+      return;
+    } catch (e) {
+      console.error(e);
+    }
+};
+
+module.exports = { all, create, find, approvePurchaseProducts, updateStock } 
