@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const { dbConnection } = require('./database/config')
-const { securedUser } = require('./middlewares/auth')
+const { securedUser, securedAdmin } = require('./middlewares/auth')
 dbConnection();
 
 const compression = require('compression');
@@ -17,6 +17,7 @@ const products = require('./routes/products');
 const auth = require('./routes/auth');
 const purchases = require('./routes/purchases');
 const contact = require('./routes/contact');
+const adminProducts = require('./routes/admin/products')
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/api/products', products);
 app.use('/api/auth', auth);
 app.use('/api/purchases', securedUser, purchases);
 app.use('/api/contact', contact);
+app.use('api/admin/products', securedAdmin, adminProducts)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

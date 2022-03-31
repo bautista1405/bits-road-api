@@ -9,12 +9,13 @@ const { registerTemplate } = require('../utils/registerTemplate')
 const auth = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email }, { password: 1 });
+        const user = await User.findOne({ email }, { password: 1, role: 1 });
         const isPasswordValid = unhash(password, user.password);
         
         const JWTObject = {
             _id: user._id,
-            email
+            email,
+            role,
         }
 
         const JWT = createToken(JWTObject)

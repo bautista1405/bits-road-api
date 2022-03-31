@@ -14,4 +14,19 @@ const securedUser = (req, res, next) => {
   }
 };
 
-module.exports = { securedUser };
+const securedAdmin = (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+    const { _id, role } = decodeToken(authorization);
+    req.id = _id;
+    req.role = role;
+    next();
+  } catch (e) {
+    console.error(e);
+    res
+      .status(401)
+      .json({ message: "Unauthorized", img: "https://http.cat/401" });
+  }
+}
+
+module.exports = { securedUser, securedAdmin };
