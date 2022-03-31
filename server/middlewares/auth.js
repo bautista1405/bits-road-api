@@ -18,6 +18,9 @@ const securedAdmin = (req, res, next) => {
   try {
     const { authorization } = req.headers;
     const { _id, role } = decodeToken(authorization);
+    if(role !== "admin") {
+      throw new Error('No tenés acceso a esta ruta')
+    }
     req.id = _id;
     req.role = role;
     next();
