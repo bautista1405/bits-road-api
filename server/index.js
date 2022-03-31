@@ -29,7 +29,7 @@ app.use('/api/products', products);
 app.use('/api/auth', auth);
 app.use('/api/purchases', securedUser, purchases);
 app.use('/api/contact', contact);
-app.use('api/admin/products', securedAdmin, adminProducts)
+app.use('/api/admin/products', securedAdmin, adminProducts)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

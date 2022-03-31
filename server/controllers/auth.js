@@ -15,7 +15,7 @@ const auth = async (req, res) => {
         const JWTObject = {
             _id: user._id,
             email,
-            role,
+            role: user.role,
         }
 
         const JWT = createToken(JWTObject)
@@ -30,6 +30,7 @@ const auth = async (req, res) => {
     } catch (e) {
         console.error(e);
         //verificar si existe el usuario, si no existe retornar un 401
+        res.sendStatus(500).json({ message: 'Internal server error' });
     }
 }
 
