@@ -11,9 +11,13 @@ const all = async (_, res) => {
 }
 
 const create = (req, res) => {
-    const { title, price, description} = req.body
-    console.log(req.body);
-    res.status(200).json({ message: 'Product created successfully'});
+    try {
+      console.log(req.body)
+      console.log(req.files)
+    } catch (e) {
+      console.error(e);
+      res.sendStatus(401).json( { message: 'Datos incorrectos'} );
+    }
 }
 
 const single = async (req, res) => {
