@@ -33,6 +33,10 @@ const UserSchema = Schema(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      default: 'user'
+    },
     enable: {
       type: Boolean,
       default: false,

@@ -18,6 +18,10 @@ const ProductSchema = Schema({
     type: String,
     required: true,
   },
+  photos: {
+    type: Array,
+    default: [],
+  },
   enable: {
     type: Boolean,
     default: true,
