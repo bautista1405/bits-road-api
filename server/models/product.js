@@ -26,7 +26,7 @@ const ProductSchema = Schema({
     type: Boolean,
     default: true,
   },
-  available_quantity: {
+  stock: {
     type: Number,
     required: true,
   },

@@ -24,9 +24,11 @@ const saveFile = ({ path, size, mimetype }, allowExtension) => {
 }
 
 const imgFile = (file) => {
-    saveFile(file, imgExtensionAllowed);
+    return saveFile(file, imgExtensionAllowed);
 }
 
 const pdfFile = (file) => {
-    saveFile(file, pdfExtensionAllowed);
+    return saveFile(file, pdfExtensionAllowed);
 }
+
+module.exports = { imgFile, pdfFile };
