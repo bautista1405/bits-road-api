@@ -1,4 +1,5 @@
-const product = require('../models/product')
+const Product = require('../models/product');
+const { createProduct } = require('../services/product');
 
 const all = async (_, res) => {
    try {
@@ -10,13 +11,19 @@ const all = async (_, res) => {
    }
 }
 
-const create = (req, res) => {
+const create = async (req, res) => {
     try {
+
       console.log(req.body)
       console.log(req.files)
+      const newProduct = createProduct(req.body, req.files);
+      console.log(newProduct);
+      const product = new Product(newProduct);
+      await product.save();
+      res.status(201).json({message: 'Producto dado de alta'})
     } catch (e) {
       console.error(e);
-      res.sendStatus(401).json( { message: 'Datos incorrectos'} );
+      res.sendStatus(500);
     }
 }
 

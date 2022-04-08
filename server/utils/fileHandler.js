@@ -9,17 +9,20 @@ const saveFile = ({ path, size, mimetype }, allowExtension) => {
         if(!allowExtension.includes(extension))  //weight/type verification
             throw new Error('Formato no permitido');
     
-        if(size > 1000000) {
+        if(size < 1000000) {
+            
             const uid = uuidv4();
             const fileName = `${uid}.${extension}`;  //give the file a unique name
-            const fileNameOut = `./images/${fileName}`; //location where the file will be saved
-            fs.createReadStream(path).pipe(fs.createWriteStream(fileNameOut)); //read and write the file
-            fs.unlinkSync(path);
+            
             return fileName;
         }
-        throw new Error('El tamaño del archivo es muy grande')
-        } catch (e) {
+        
+        throw new Error('El archivo es muy pesado')
+        
+        
+    } catch (e) {
         console.error(e);
+        res.sendStatus(500);
     }
 }
 
