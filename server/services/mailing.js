@@ -1,5 +1,7 @@
 "use strict";
 const nodemailer = require("nodemailer");
+const user = process.env.USER_APP
+const pass = process.env.PASS_APP
 
 // async..await is not allowed in global scope, must use a wrapper
 const sendMail = async ({
@@ -13,8 +15,8 @@ const sendMail = async ({
       secure: false, // true for 465, false for other ports
       auth: {
         //type: 'OAuth2',
-        user: "aramendia30@gmail.com", 
-        pass: "nljiuvjqbdlauspj", 
+        user: user, 
+        pass: pass, 
       },
       tls: {
         rejectUnauthorized: false,
