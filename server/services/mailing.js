@@ -15,8 +15,8 @@ const sendMail = async ({
       secure: false, // true for 465, false for other ports
       auth: {
         //type: 'OAuth2',
-        user: user, 
-        pass: pass, 
+        user: "aramendia30@gmail.com", 
+        pass: "nljiuvjqbdlauspj", 
       },
       tls: {
         rejectUnauthorized: false,

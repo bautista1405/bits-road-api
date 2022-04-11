@@ -2,7 +2,7 @@
 //retorna la referencia de la conexión, para poder hacer queries a la BBDD
 
 const mongoose = require('mongoose');
-const url = process.env.DB_URL
+const url = "mongodb+srv://bauti1405:jMyjdHKIHXxeygaz@itcluster.53f2w.mongodb.net/e-commerce"
 
 const dbConnection = async () => {
     try {
