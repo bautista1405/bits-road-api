@@ -2,10 +2,11 @@
 const nodemailer = require("nodemailer");
 const user = process.env.USER_APP
 const pass = process.env.PASS_APP
+const email = process.env.USER_EMAIL
 
 // async..await is not allowed in global scope, must use a wrapper
 const sendMail = async ({
-  to = "aramendia30@gmail.com",
+  to = email,
   subject = "Nuevo contacto WEB",
   html,
 }) => {
